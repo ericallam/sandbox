@@ -63,6 +63,15 @@ exports['it should maintain the order of sync. console output'] = function( test
   })
 }
 
+exports['it should output object if result is not string'] = function( test ) {
+  sb.run("(function(){ return { name: 'Caike', age: 26} })();", function( output ) {
+    test.equal(typeof output.result, 'object');
+    test.equal(output.result.name, 'Caike' );
+    test.equal(output.result.age, 26 );
+    test.finish();
+  });
+};
+
 /* ------------------------------ GO GO GO ------------------------------ */
 if ( module == require.main )
   require( 'async_testing' ).run( __filename, process.ARGV )
